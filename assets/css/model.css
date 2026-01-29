@@ -178,3 +178,17 @@
         max-width: 800px;
     }
 }
+
+/* Descrição/subtítulo do profissional */
+.curriculo-modal-descricao {
+    font-size: 16px;
+    font-weight: 400;
+    color: #6b7280;
+    margin: 8px 0 0 0;
+    line-height: 1.4;
+}
+
+/* Ajuste no header quando tem descrição */
+.curriculo-modal-header.com-descricao {
+    padding-bottom: 20px;
+}
