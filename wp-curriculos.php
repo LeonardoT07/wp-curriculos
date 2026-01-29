@@ -2,7 +2,7 @@
 /**
  * Plugin Name: WP Currículos
  * Description: Sistema de currículos com modal moderno para páginas de curso
- * Version: 1.1
+ * Version: 1.2
  * Author: Leonardo Tavares
  */
 
@@ -56,7 +56,7 @@ class WP_Curriculos {
         // Meta box para descrição curta
         add_meta_box(
             'curriculo_descricao',
-            '✏️ Descrição Curta',
+            'Descrição Curta',
             [$this, 'render_descricao_box'],
             'curriculo',
             'normal',
@@ -66,7 +66,7 @@ class WP_Curriculos {
         // Meta box para classe CSS
         add_meta_box(
             'curriculo_classe_css',
-            '🔗 Classe CSS do Botão',
+            'Classe CSS do Botão',
             [$this, 'render_meta_box'],
             'curriculo',
             'side',
@@ -76,7 +76,7 @@ class WP_Curriculos {
         // Meta box de instruções
         add_meta_box(
             'curriculo_instrucoes',
-            '📘 Como Usar',
+            'Como Usar',
             [$this, 'render_instrucoes'],
             'curriculo',
             'side',
@@ -90,7 +90,7 @@ class WP_Curriculos {
         ?>
         <div class="curriculo-descricao-box">
             <p class="description" style="margin-bottom: 10px;">
-                💡 Adicione um subtítulo profissional (ex: "Fisioterapeuta Especialista em Pilates", "Mestre em Biomecânica")
+                Adicione um subtítulo profissional (ex: "Fisioterapeuta Especialista em Pilates", "Mestre em Biomecânica")
             </p>
             <input 
                 type="text" 
@@ -121,16 +121,14 @@ class WP_Curriculos {
                     placeholder="ex: ver-curriculo-joao"
                 >
             </p>
-            <p class="description">
-                ⚠️ Use letras minúsculas, números e hífens apenas.<br>
-                Exemplo: <code>ver-curriculo-maria</code>
-            </p>
             
             <?php if ($classe): ?>
-            <div class="curriculo-exemplo">
-                <p><strong>💡 Código para usar no site:</strong></p>
-                <textarea readonly class="widefat code" rows="3" onclick="this.select()"><button class="<?php echo esc_attr($classe); ?>">Ver Currículo</button></textarea>
-                <p class="description">Clique para copiar</p>
+            <div class="curriculo-copiar-box">
+                <button type="button" class="button button-primary curriculo-copiar-btn" data-classe="<?php echo esc_attr($classe); ?>">
+                    <span class="dashicons dashicons-clipboard" style="margin-top: 3px;"></span>
+                    Copiar Classe
+                </button>
+                <span class="curriculo-copiado" style="display:none; color: #46b450; margin-left: 10px;">✓ Copiado!</span>
             </div>
             <?php endif; ?>
         </div>
@@ -141,16 +139,16 @@ class WP_Curriculos {
         ?>
         <div class="curriculo-instrucoes">
             <ol>
-                <li>📝 Preencha o <strong>nome do profissional</strong> no título</li>
-                <li>💼 Adicione uma <strong>descrição curta</strong> (cargo/especialização)</li>
-                <li>✍️ Escreva o <strong>currículo completo</strong> no editor abaixo</li>
-                <li>🔗 Defina uma <strong>classe CSS única</strong> ao lado</li>
-                <li>💾 Clique em <strong>Publicar</strong></li>
-                <li>🎯 Adicione um botão com essa classe na sua página</li>
+                <li>Preencha o <strong>nome do profissional</strong> no título</li>
+                <li>Adicione uma <strong>descrição curta</strong> (cargo/especialização)</li>
+                <li>Escreva o <strong>currículo completo</strong> no editor abaixo</li>
+                <li>Defina uma <strong>classe CSS única</strong> ao lado</li>
+                <li>Clique em <strong>Publicar</strong></li>
+                <li>Adicione um botão com essa classe na sua página</li>
             </ol>
             
             <div class="curriculo-dica">
-                <strong>💡 Dica:</strong> Use negrito, listas e parágrafos para organizar melhor o currículo!
+                <strong>Dica:</strong> Use negrito, listas e parágrafos para organizar melhor o currículo!
             </div>
         </div>
         <?php
@@ -190,7 +188,6 @@ class WP_Curriculos {
             'title' => 'Nome do Profissional',
             'descricao' => 'Descrição',
             'classe_css' => 'Classe CSS',
-            'caracteres' => 'Tamanho',
             'date' => 'Data',
         ];
         return $new_columns;
@@ -210,18 +207,10 @@ class WP_Curriculos {
             case 'classe_css':
                 $classe = get_post_meta($post_id, '_curriculo_classe', true);
                 if ($classe) {
-                    echo '<code class="curriculo-classe-tag">' . esc_html($classe) . '</code>';
+                    echo '<code class="curriculo-classe-tag curriculo-classe-copiar" data-classe="' . esc_attr($classe) . '" title="Clique para copiar">' . esc_html($classe) . '</code>';
                 } else {
                     echo '<span style="color: #999;">—</span>';
                 }
-                break;
-            
-            case 'caracteres':
-                $content = get_post_field('post_content', $post_id);
-                $palavras = str_word_count(strip_tags($content));
-                $chars = strlen(strip_tags($content));
-                echo '<span style="color: #666;">' . number_format($chars, 0, ',', '.') . ' caracteres</span><br>';
-                echo '<small style="color: #999;">' . $palavras . ' palavras</small>';
                 break;
         }
     }
@@ -235,7 +224,15 @@ class WP_Curriculos {
             'wp-curriculos-admin',
             plugin_dir_url(__FILE__) . 'assets/css/admin.css',
             [],
-            '1.1'
+            '1.2'
+        );
+        
+        wp_enqueue_script(
+            'wp-curriculos-admin',
+            plugin_dir_url(__FILE__) . 'assets/js/admin.js',
+            ['jquery'],
+            '1.2',
+            true
         );
     }
     
@@ -244,14 +241,14 @@ class WP_Curriculos {
             'wp-curriculos-modal',
             plugin_dir_url(__FILE__) . 'assets/css/modal.css',
             [],
-            '1.1'
+            '1.2'
         );
         
         wp_enqueue_script(
             'wp-curriculos-modal',
             plugin_dir_url(__FILE__) . 'assets/js/modal.js',
             ['jquery'],
-            '1.1',
+            '1.2',
             true
         );
         

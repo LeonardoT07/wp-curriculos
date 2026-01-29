@@ -1,0 +1,236 @@
+/* ==================================
+   MODAL DE CURRÍCULOS - FRONTEND
+   ================================== */
+
+/* Overlay do modal */
+.curriculo-modal-overlay {
+    display: none !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: rgba(0, 0, 0, 0.75) !important;
+    backdrop-filter: blur(4px);
+    z-index: 999999 !important;
+    animation: fadeIn 0.3s ease;
+}
+
+.curriculo-modal-overlay.ativo {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 20px !important;
+}
+
+/* Container do modal */
+.curriculo-modal {
+    position: relative !important;
+    background: #fff !important;
+    border-radius: 16px !important;
+    max-width: 600px !important;
+    width: 100% !important;
+    max-height: 85vh !important;
+    overflow: hidden !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3) !important;
+    animation: slideUp 0.3s ease;
+    margin: 0 auto !important;
+}
+
+/* Header do modal */
+.curriculo-modal-header {
+    padding: 24px 24px 16px !important;
+    border-bottom: 1px solid #e5e7eb !important;
+    display: flex !important;
+    align-items: flex-start !important;
+    justify-content: space-between !important;
+    gap: 16px !important;
+    background: #fff !important;
+}
+
+.curriculo-modal-titulo {
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    color: #111827 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.3 !important;
+    flex: 1 !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+}
+
+/* Descrição/subtítulo do profissional */
+.curriculo-modal-descricao {
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    color: #6b7280 !important;
+    margin: 8px 0 0 0 !important;
+    padding: 0 !important;
+    line-height: 1.4 !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+}
+
+/* Ajuste no header quando tem descrição */
+.curriculo-modal-header.com-descricao {
+    padding-bottom: 20px !important;
+}
+
+/* Botão fechar */
+.curriculo-modal-fechar {
+    background: #f3f4f6 !important;
+    border: none !important;
+    border-radius: 8px !important;
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    min-height: 36px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    transition: all 0.2s !important;
+    flex-shrink: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.curriculo-modal-fechar:hover {
+    background: #e5e7eb !important;
+    transform: scale(1.05) !important;
+}
+
+.curriculo-modal-fechar svg {
+    width: 20px !important;
+    height: 20px !important;
+    stroke: #374151 !important;
+    display: block !important;
+}
+
+/* Conteúdo do modal */
+.curriculo-modal-conteudo {
+    padding: 24px !important;
+    overflow-y: auto !important;
+    max-height: calc(85vh - 100px) !important;
+    color: #374151 !important;
+    font-size: 16px !important;
+    line-height: 1.7 !important;
+    background: #fff !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+}
+
+.curriculo-modal-conteudo p {
+    margin-bottom: 16px !important;
+    color: #1c1c1c !important;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+    font-weight: 300 !important;
+}
+
+.curriculo-modal-conteudo p:last-child {
+    margin-bottom: 0 !important;
+}
+
+.curriculo-modal-conteudo strong {
+    color: #111827 !important;
+    font-weight: 600 !important;
+}
+
+.curriculo-modal-conteudo ul,
+.curriculo-modal-conteudo ol {
+    margin: 16px 0 !important;
+    padding-left: 24px !important;
+}
+
+.curriculo-modal-conteudo li {
+    margin-bottom: 8px !important;
+    color: #374151 !important;
+}
+
+/* Loading state */
+.curriculo-modal-loading {
+    text-align: center !important;
+    padding: 40px 24px !important;
+    color: #6b7280 !important;
+    font-size: 16px !important;
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Scrollbar customizada */
+.curriculo-modal-conteudo::-webkit-scrollbar {
+    width: 8px !important;
+}
+
+.curriculo-modal-conteudo::-webkit-scrollbar-track {
+    background: #f3f4f6 !important;
+    border-radius: 4px !important;
+}
+
+.curriculo-modal-conteudo::-webkit-scrollbar-thumb {
+    background: #d1d5db !important;
+    border-radius: 4px !important;
+}
+
+.curriculo-modal-conteudo::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af !important;
+}
+
+/* Mobile first - ajustes para tablets */
+@media (min-width: 768px) {
+    .curriculo-modal {
+        max-width: 700px !important;
+    }
+    
+    .curriculo-modal-header {
+        padding: 28px 32px 20px !important;
+    }
+    
+    .curriculo-modal-conteudo {
+        padding: 28px 32px 32px !important;
+    }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+    .curriculo-modal {
+        max-width: 800px !important;
+    }
+}
+
+/* Reset de estilos do Divi que podem causar conflito */
+.curriculo-modal * {
+    box-sizing: border-box !important;
+}
+
+.curriculo-modal a {
+    text-decoration: none !important;
+}
+
+.curriculo-modal button {
+    font-family: inherit !important;
+    outline: none !important;
+}
+
+/* Garante que o overlay fique acima de tudo do Divi */
+body.et-fb .curriculo-modal-overlay,
+body.et_divi_builder .curriculo-modal-overlay {
+    z-index: 999999 !important;
+}

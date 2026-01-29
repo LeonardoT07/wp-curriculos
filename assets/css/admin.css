@@ -2,51 +2,36 @@
    ESTILOS DO ADMIN - WP CURRÍCULOS
    ================================== */
 
-/* Customização do menu lateral */
-#adminmenu #menu-posts-curriculo .wp-menu-image:before {
-    content: "\f336";
-    color: #fff;
-}
-
-#adminmenu #menu-posts-curriculo:hover .wp-menu-image:before,
-#adminmenu #menu-posts-curriculo.wp-has-current-submenu .wp-menu-image:before {
-    color: #00a0d2;
-}
-
-/* Header da página de listagem */
-.post-type-curriculo .wrap h1 {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 20px 0;
-}
-
-.post-type-curriculo .wrap h1:before {
-    content: "👨‍🏫";
-    font-size: 32px;
-}
-
-/* Estilização das colunas */
+/* Coluna classe CSS */
 .column-classe_css {
     width: 200px;
 }
 
-.column-caracteres {
-    width: 150px;
+.column-descricao {
+    width: 300px;
 }
 
+/* Tag da classe CSS */
 .curriculo-classe-tag {
     background: #e8f4f8;
     color: #0073aa;
-    padding: 4px 10px;
+    padding: 5px 12px;
     border-radius: 4px;
     font-family: 'Courier New', monospace;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 600;
     display: inline-block;
+    cursor: pointer;
+    transition: all 0.2s;
 }
 
-/* Meta box customizada */
+.curriculo-classe-tag:hover {
+    background: #0073aa;
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+/* Meta box da classe CSS */
 .curriculo-meta-box {
     padding: 10px 0;
 }
@@ -62,6 +47,7 @@
     font-size: 14px;
     border-radius: 4px;
     border: 1px solid #dcdcde;
+    margin-bottom: 15px;
 }
 
 .curriculo-meta-box input[type="text"]:focus {
@@ -69,48 +55,44 @@
     box-shadow: 0 0 0 1px #2271b1;
 }
 
-.curriculo-meta-box .description {
-    font-size: 12px;
-    color: #646970;
-    margin-top: 8px;
-    line-height: 1.5;
+/* Botão copiar */
+.curriculo-copiar-box {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
 }
 
-.curriculo-meta-box code {
-    background: #f0f0f1;
-    padding: 2px 6px;
-    border-radius: 3px;
-    font-size: 11px;
+.curriculo-copiar-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 16px !important;
+    height: auto !important;
+    font-size: 14px !important;
 }
 
-/* Box de exemplo */
-.curriculo-exemplo {
-    margin-top: 20px;
+.curriculo-copiado {
+    font-weight: 600;
+    animation: fadeIn 0.3s;
+}
+
+/* Box de descrição */
+.curriculo-descricao-box {
     padding: 15px;
-    background: #f6f7f7;
-    border-left: 4px solid #00a0d2;
+    background: #f9fafb;
+    border: 1px solid #dcdcde;
     border-radius: 4px;
 }
 
-.curriculo-exemplo strong {
-    display: block;
-    margin-bottom: 8px;
-    color: #1d2327;
+.curriculo-descricao-box input[type="text"] {
+    border: 2px solid #dcdcde;
+    transition: all 0.2s;
 }
 
-.curriculo-exemplo textarea {
-    font-family: 'Courier New', monospace;
-    font-size: 12px;
-    background: #fff;
-    border: 1px solid #dcdcde;
-    padding: 10px;
-    cursor: pointer;
-    resize: none;
-}
-
-.curriculo-exemplo textarea:focus {
+.curriculo-descricao-box input[type="text"]:focus {
     border-color: #2271b1;
     box-shadow: 0 0 0 1px #2271b1;
+    background: #fff;
 }
 
 /* Box de instruções */
@@ -134,7 +116,7 @@
 }
 
 .curriculo-dica {
-    margin-top: 20px;
+    margin-top: 15px;
     padding: 12px;
     background: #fff8e5;
     border-left: 4px solid #f0b849;
@@ -147,119 +129,12 @@
     color: #8a6d3b;
 }
 
-/* Estilização do editor clássico */
-.post-type-curriculo #postdivrich {
-    margin-bottom: 20px;
-}
-
-.post-type-curriculo #wp-content-editor-container {
-    border: 1px solid #dcdcde;
-    border-radius: 4px;
-}
-
-/* Sidebar do editor */
-.post-type-curriculo #side-sortables .postbox {
-    border: 1px solid #dcdcde;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-}
-
-.post-type-curriculo #side-sortables .postbox .postbox-header {
-    background: #f6f7f7;
-    border-bottom: 1px solid #dcdcde;
-}
-
-.post-type-curriculo #side-sortables .postbox .postbox-header h2 {
-    font-size: 14px;
-    padding: 12px;
-}
-
-.post-type-curriculo #side-sortables .inside {
-    padding: 15px;
-}
-
-/* Botão publicar customizado */
-.post-type-curriculo #publishing-action {
-    text-align: right;
-}
-
-.post-type-curriculo #publish {
-    background: #00a0d2;
-    border-color: #0087be;
-    text-shadow: none;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-}
-
-.post-type-curriculo #publish:hover {
-    background: #0087be;
-    border-color: #006a95;
-}
-
-/* Mensagens de sucesso */
-.post-type-curriculo .notice-success {
-    border-left-color: #00a0d2;
-}
-
-/* Responsivo */
-@media (max-width: 782px) {
-    .post-type-curriculo .wrap h1:before {
-        font-size: 24px;
+/* Animação */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
     }
-    
-    .curriculo-classe-tag {
-        font-size: 11px;
-        padding: 3px 8px;
-    }
-}
-
-/* Estado vazio */
-.post-type-curriculo .no-items td {
-    text-align: center;
-    padding: 40px 20px !important;
-    color: #646970;
-}
-
-.post-type-curriculo .no-items td:before {
-    content: "📋";
-    display: block;
-    font-size: 48px;
-    margin-bottom: 20px;
-}
-
-/* Animação ao salvar */
-@keyframes pulse {
-    0%, 100% {
+    to {
         opacity: 1;
     }
-    50% {
-        opacity: 0.5;
-    }
-}
-
-.post-type-curriculo .spinner.is-active {
-    animation: pulse 1s ease-in-out infinite;
-}
-
-
-/* Descrição curta box */
-.curriculo-descricao-box {
-    padding: 15px;
-    background: #f9fafb;
-    border: 1px solid #dcdcde;
-    border-radius: 4px;
-}
-
-.curriculo-descricao-box input[type="text"] {
-    border: 2px solid #dcdcde;
-    transition: all 0.2s;
-}
-
-.curriculo-descricao-box input[type="text"]:focus {
-    border-color: #2271b1;
-    box-shadow: 0 0 0 1px #2271b1;
-    background: #fff;
-}
-
-/* Coluna descrição na listagem */
-.column-descricao {
-    width: 250px;
 }
